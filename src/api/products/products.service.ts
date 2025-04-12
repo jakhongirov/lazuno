@@ -5,7 +5,6 @@ import { CategoriesEntity } from 'src/core/entity';
 import { ReviewsEntity } from 'src/core/entity';
 import { productsRepository } from 'src/core/repository';
 import { categoriesRepository } from 'src/core/repository';
-import { Multer } from 'multer';
 import * as fs from 'fs';
 import * as path from 'path';
 import { FilterProductDto } from './dto/fitter-product.dto';
@@ -165,7 +164,7 @@ export class ProductsService {
 
   async createProduct(
     productData: CreateProductDto,
-    files: Multer.File[],
+    files: Express.Multer.File[],
   ): Promise<ProductsEntity> {
     const category = await this.categoriesRepo.findOne({
       where: { id: productData.category_id },
@@ -195,7 +194,7 @@ export class ProductsService {
   async updateProduct(
     id: number,
     productData: UpdateProductDto,
-    files: Multer.File[],
+    files: Express.Multer.File[],
   ) {
     const product = await this.productsRepo.findOne({
       where: { id },

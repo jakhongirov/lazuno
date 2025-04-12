@@ -25,7 +25,7 @@ import {
   ApiResponse,
 } from '@nestjs/swagger';
 import { CreateCategoryDto } from './dto/create-category.dto';
-import { Multer, diskStorage } from 'multer';
+import { diskStorage } from 'multer';
 import * as fs from 'fs';
 import * as path from 'path';
 import { FileInterceptor } from '@nestjs/platform-express';
@@ -150,7 +150,7 @@ export class CategoriesController {
     },
   })
   async createCategory(
-    @UploadedFile() file: Multer.File,
+    @UploadedFile() file: Express.Multer.File,
     @Body() categoryData: CreateCategoryDto,
   ) {
     return this.CategoriesService.createCategory(categoryData, file);
@@ -204,7 +204,7 @@ export class CategoriesController {
   async updateCategory(
     @Param('id', ParseIntPipe) id: number,
     @Body() categoryData: CreateCategoryDto,
-    @UploadedFile() file?: Multer.File,
+    @UploadedFile() file?: Express.Multer.File,
   ) {
     return this.CategoriesService.updateCategory(id, categoryData, file);
   }

@@ -3,7 +3,6 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { CategoriesEntity, ProductsEntity } from 'src/core/entity';
 import { categoriesRepository, productsRepository } from 'src/core/repository';
 import { CreateCategoryDto } from './dto/create-category.dto';
-import { Multer } from 'multer';
 import * as fs from 'fs';
 import * as path from 'path';
 
@@ -70,7 +69,7 @@ export class CategoriesService {
 
   async createCategory(
     categoryData: CreateCategoryDto,
-    file: Multer.File,
+    file: Express.Multer.File,
   ): Promise<CategoriesEntity> {
     const newCategory = this.categoriesRepo.create({
       ...categoryData,
@@ -84,7 +83,7 @@ export class CategoriesService {
   async updateCategory(
     id: number,
     categoryData: CreateCategoryDto,
-    file?: Multer.File,
+    file?: Express.Multer.File,
   ): Promise<CategoriesEntity> {
     const category = await this.categoriesRepo.findOne({ where: { id } });
 

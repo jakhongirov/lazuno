@@ -26,7 +26,7 @@ import {
 } from '@nestjs/swagger';
 import { FilterProductDto } from './dto/fitter-product.dto';
 import { CreateProductDto } from './dto/create-product';
-import { Multer, diskStorage } from 'multer';
+import { diskStorage } from 'multer';
 import * as fs from 'fs';
 import * as path from 'path';
 import { AnyFilesInterceptor } from '@nestjs/platform-express';
@@ -205,7 +205,7 @@ export class ProductsController {
   @ApiResponse({ status: 201, description: 'Product created successfully' })
   createProduct(
     @Body() body: CreateProductDto,
-    @UploadedFiles() files: Multer.File[],
+    @UploadedFiles() files: Express.Multer.File[],
   ) {
     return this.productsService.createProduct(body, files);
   }
@@ -234,7 +234,7 @@ export class ProductsController {
   async updateProduct(
     @Param('id', ParseIntPipe) id: number,
     @Body() body: UpdateProductDto,
-    @UploadedFiles() files: Multer.File[],
+    @UploadedFiles() files: Express.Multer.File[],
   ) {
     return this.productsService.updateProduct(id, body, files);
   }
