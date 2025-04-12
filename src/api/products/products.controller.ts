@@ -166,7 +166,7 @@ export class ProductsController {
   }
 
   @HttpCode(200)
-  @Get('F:id')
+  @Get(':id')
   @ApiOperation({ summary: 'Product by id' })
   @ApiResponse({
     status: 200,
@@ -189,7 +189,7 @@ export class ProductsController {
   @UseInterceptors(
     AnyFilesInterceptor({
       storage: diskStorage({
-        destination: '../../../uploads',
+        destination: path.join(__dirname, '..', '..', '..', 'uploads'),
         filename: (req, file, cb) => {
           const uniqueSuffix =
             Date.now() + '-' + Math.round(Math.random() * 1e9);
@@ -216,7 +216,7 @@ export class ProductsController {
   @UseInterceptors(
     AnyFilesInterceptor({
       storage: diskStorage({
-        destination: '../../../uploads',
+        destination: path.join(__dirname, '..', '..', '..', 'uploads'),
         filename: (req, file, cb) => {
           const uniqueSuffix =
             Date.now() + '-' + Math.round(Math.random() * 1e9);

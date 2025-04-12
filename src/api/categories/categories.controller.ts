@@ -162,7 +162,7 @@ export class CategoriesController {
   @UseInterceptors(
     FileInterceptor('image', {
       storage: diskStorage({
-        destination: '../../../uploads',
+        destination: path.join(__dirname, '..', '..', '..', 'uploads'),
         filename: (req, file, callback) => {
           const uniqueSuffix =
             Date.now() + '-' + Math.round(Math.random() * 1e9);

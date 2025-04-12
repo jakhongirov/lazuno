@@ -9,10 +9,11 @@ dotenv.config();
 
 async function bootstrap() {
   const app = await NestFactory.create<NestExpressApplication>(AppModule);
-
+  app.enableCors({
+    origin: '*',
+  });
   app.useStaticAssets(join(__dirname, '..', 'uploads'));
   app.use('/uploads', express.static(join(__dirname, '../uploads')));
-
   app.setGlobalPrefix('api/v1');
 
   const config = new DocumentBuilder()
