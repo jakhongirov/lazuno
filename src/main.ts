@@ -20,11 +20,11 @@ async function bootstrap() {
     .setDescription('The Lazuno OK API description')
     .setVersion('1.0')
     .addServer('https://srvr.lazuno.uz')
-    .addServer('http://localhost:3000')
+    .addServer('http://localhost:3003')
     .build();
   const documentFactory = () => SwaggerModule.createDocument(app, config);
   SwaggerModule.setup('api-docs', app, documentFactory);
 
-  await app.listen(3000);
+  await app.listen(3003);
 }
 bootstrap();

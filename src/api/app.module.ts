@@ -14,7 +14,7 @@ import { ReviewsModule } from './reviews/reviews.module';
       host: process.env.POSTGRES_HOST,
       port: Number(process.env.POSTGRES_PORT),
       username: 'postgres',
-      password: `jdb006`,
+      password: process.env.POSTGRES_PASSWORD,
       database: process.env.POSTGRES_DATABASE,
       entities: [],
       synchronize: true,
