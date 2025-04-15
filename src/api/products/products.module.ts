@@ -14,7 +14,7 @@ import { JwtStrategy } from 'src/config/guards/jwt/jswt.strategy';
   imports: [
     JwtModule.registerAsync({
       useFactory: () => ({
-        secret: process.env.JWT_SECRET,
+        secret: "LAZUNO!@#$",
       }),
     }),
     TypeOrmModule.forFeature([CategoriesEntity, ProductsEntity, ReviewsEntity]),

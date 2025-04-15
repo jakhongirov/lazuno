@@ -12,7 +12,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
   imports: [
     JwtModule.registerAsync({
       useFactory: () => ({
-        secret: process.env.JWT_SECRET,
+        secret: "LAZUNO!@#$",
       }),
     }),
     TypeOrmModule.forFeature([UsersEntity]),

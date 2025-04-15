@@ -15,7 +15,7 @@ import { RolesGuard } from 'src/config/guards/roles/roles.guard';
   imports: [
     JwtModule.registerAsync({
       useFactory: () => ({
-        secret: process.env.JWT_SECRET,
+        secret: "LAZUNO!@#$",
       }),
     }),
     TypeOrmModule.forFeature([CategoriesEntity, ProductsEntity, ReviewsEntity]),

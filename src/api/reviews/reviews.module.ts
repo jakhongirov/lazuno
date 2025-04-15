@@ -11,7 +11,7 @@ import { JwtModule } from '@nestjs/jwt';
   imports: [
     JwtModule.registerAsync({
       useFactory: () => ({
-        secret: process.env.JWT_SECRET,
+        secret: "LAZUNO!@#$",
       }),
     }),
     TypeOrmModule.forFeature([ProductsEntity, ReviewsEntity]),
