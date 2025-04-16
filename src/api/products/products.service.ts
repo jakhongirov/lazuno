@@ -175,7 +175,7 @@ export class ProductsService {
     }
 
     const image_url = files.map(
-      (file) => `http://srvr.lazuno.uz/uploads/${file.filename}`,
+      (file) => `https://srvr.lazuno.uz/uploads/${file.filename}`,
     );
     const image_name = files.map((file) => file.filename);
 
@@ -225,7 +225,7 @@ export class ProductsService {
       });
 
       product.image_url = files.map(
-        (file) => `http://srvr.lazuno.uz/uploads/${file.filename}`,
+        (file) => `https://srvr.lazuno.uz/uploads/${file.filename}`,
       );
       product.image_name = files.map((file) => file.filename);
     }
