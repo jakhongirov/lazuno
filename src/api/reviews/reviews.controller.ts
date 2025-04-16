@@ -108,7 +108,6 @@ export class ReviewsController {
   }
 
   @HttpCode(201)
-  @UseGuards(JwtGuard, RolesGuard)
   @Post()
   @ApiOperation({ summary: 'Create a new review' })
   @ApiBody({
