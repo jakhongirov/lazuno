@@ -33,7 +33,9 @@ export class ProductsEntity {
   @Column('text', { array: true, default: [] })
   image_name: string[];
 
-  @ManyToOne(() => CategoriesEntity, (category) => category.products)
+  @ManyToOne(() => CategoriesEntity, (category) => category.products, {
+    onDelete: 'CASCADE',
+  })
   @JoinColumn()
   category: CategoriesEntity;
 

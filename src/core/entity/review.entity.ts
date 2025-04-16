@@ -28,7 +28,9 @@ export class ReviewsEntity {
   @Column({ default: 0 })
   stars: number;
 
-  @ManyToOne(() => ProductsEntity, (product) => product.reviews)
+  @ManyToOne(() => ProductsEntity, (product) => product.reviews, {
+    onDelete: 'CASCADE',
+  })
   @JoinColumn()
   product: ProductsEntity;
 
