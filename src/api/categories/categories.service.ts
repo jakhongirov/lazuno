@@ -73,7 +73,7 @@ export class CategoriesService {
   ): Promise<CategoriesEntity> {
     const newCategory = this.categoriesRepo.create({
       ...categoryData,
-      image_url: `${process.env.UPLOAD_URL}/${file.filename}`,
+      image_url: `http://srvr.lazuno.uz/uploads/${file.filename}`,
       image_name: file.filename,
     });
 
@@ -95,7 +95,7 @@ export class CategoriesService {
     category.lang = categoryData.lang;
 
     if (file) {
-      category.image_url = `${process.env.UPLOAD_URL}/${file.filename}`;
+      category.image_url = `http://srvr.lazuno.uz/uploads/${file.filename}`;
       category.image_name = file.filename;
     }
 
