@@ -31,6 +31,7 @@ export class ProductsService {
       ...(take > 0 ? { take } : {}),
       ...(skip > 0 ? { skip } : {}),
       order: { id: 'DESC' },
+      relations: ['category'],
     });
 
     return {
