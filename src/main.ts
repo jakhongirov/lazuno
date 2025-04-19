@@ -5,6 +5,7 @@ import { join } from 'path';
 import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger';
 import * as express from 'express';
 import * as dotenv from 'dotenv';
+import { ValidationPipe } from '@nestjs/common';
 dotenv.config();
 
 async function bootstrap() {
@@ -15,6 +16,7 @@ async function bootstrap() {
   app.useStaticAssets(join(__dirname, '..', 'uploads'));
   app.use('/uploads', express.static(join(__dirname, '../uploads')));
   app.setGlobalPrefix('api/v1');
+  app.useGlobalPipes(new ValidationPipe({ whitelist: true }));
 
   const config = new DocumentBuilder()
     .setTitle('Lazuno Ok')
