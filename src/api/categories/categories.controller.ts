@@ -105,12 +105,12 @@ export class CategoriesController {
   })
   @ApiQuery({
     name: 'lang',
-    required: true,
+    required: false,
     type: String,
     example: 'en',
     description: 'Language filter (e.g., en, uz, ru)',
   })
-  getCategoriesFilter(@Query('lang') lang: string = 'en') {
+  getCategoriesFilter(@Query('lang') lang: string) {
     return this.CategoriesService.findCategoriesProductCount(lang);
   }
 

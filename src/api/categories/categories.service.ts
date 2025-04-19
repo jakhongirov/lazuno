@@ -52,19 +52,23 @@ export class CategoriesService {
     };
   }
 
-  async findCategoriesProductCount(lang: string) {
-    return this.categoriesRepo
+  async findCategoriesProductCount(lang?: string) {
+    const query = this.categoriesRepo
       .createQueryBuilder('category')
       .leftJoin('category.products', 'product')
       .select('category.id', 'id')
       .addSelect('category.title', 'title')
       .addSelect('category.lang', 'lang')
       .addSelect('COUNT(product.id)', 'product_count')
-      .where('category.lang = :lang', { lang })
       .groupBy('category.id')
       .addGroupBy('category.title')
-      .addGroupBy('category.lang')
-      .getRawMany();
+      .addGroupBy('category.lang');
+
+    if (lang) {
+      query.where('category.lang = :lang', { lang });
+    }
+
+    return query.getRawMany();
   }
 
   async createCategory(
