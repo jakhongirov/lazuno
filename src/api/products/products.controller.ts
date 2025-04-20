@@ -148,7 +148,7 @@ export class ProductsController {
   filterProducts(
     @Query('take', ParseIntPipe) take: number = 10,
     @Query('page', ParseIntPipe) page: number = 1,
-    @Query('lang', ParseIntPipe) lang: string = 'uz',
+    @Query('lang') lang: string = 'uz',
     @Body() filterData: FilterProductDto,
   ) {
     return this.productsService.filterProducts(filterData, take, page, lang);
