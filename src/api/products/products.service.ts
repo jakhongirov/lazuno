@@ -76,27 +76,34 @@ export class ProductsService {
   }
 
   async filterProducts(
-    filterData: FilterProductDto = {}, 
+    filterData: FilterProductDto = {},
     take: number = 10,
     page: number = 1,
   ): Promise<{ data: ProductsEntity[]; total: number }> {
-    const skip = Number((page - 1) * take);
-    const where: any = {};
+    const skip = (page - 1) * take;
+
+    const query = this.productsRepo
+      .createQueryBuilder('product')
+      .leftJoinAndSelect('product.category', 'category')
+      .leftJoinAndSelect('product.reviews', 'reviews')
+      .orderBy('product.id', 'DESC');
 
     if (filterData.color?.length) {
-      where.color = In(filterData.color);
+      query.andWhere('product.color IN (:...colors)', {
+        colors: filterData.color,
+      });
     }
 
     if (filterData.category_id?.length) {
-      where.category_id = In(filterData.category_id);
+      query.andWhere('category.id IN (:...categoryIds)', {
+        categoryIds: filterData.category_id,
+      });
     }
 
-    const [products, total] = await this.productsRepo.findAndCount({
-      ...(take > 0 ? { take } : {}),
-      ...(skip > 0 ? { skip } : {}),
-      where,
-      order: { id: 'DESC' },
-    });
+    const [products, total] = await query
+      .skip(skip)
+      .take(take)
+      .getManyAndCount();
 
     return {
       data: products,
