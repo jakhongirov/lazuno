@@ -7,6 +7,7 @@ import {
   IsNotEmpty,
 } from 'class-validator';
 import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
+import { Type } from 'class-transformer';
 
 export class CreateProductDto {
   @ApiProperty({ example: 'iPhone 15 Pro', description: 'Product title' })
@@ -29,6 +30,7 @@ export class CreateProductDto {
 
   @ApiProperty({ example: 1, description: 'Category ID of the product' })
   @IsInt()
+  @Type(() => Number)
   category_id: number;
 
   @ApiProperty({
