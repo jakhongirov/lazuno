@@ -138,12 +138,20 @@ export class ProductsController {
     example: 1,
     description: 'Page number',
   })
+  @ApiQuery({
+    name: 'lang',
+    required: true,
+    type: String,
+    example: 'en',
+    description: 'Language filter (e.g., en, uz, ru)',
+  })
   filterProducts(
     @Query('take', ParseIntPipe) take: number = 10,
     @Query('page', ParseIntPipe) page: number = 1,
+    @Query('lang', ParseIntPipe) lang: string = 'uz',
     @Body() filterData: FilterProductDto,
   ) {
-    return this.productsService.filterProducts(filterData, take, page);
+    return this.productsService.filterProducts(filterData, take, page, lang);
   }
 
   @HttpCode(200)

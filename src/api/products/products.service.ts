@@ -79,6 +79,7 @@ export class ProductsService {
     filterData: FilterProductDto = {},
     take: number = 10,
     page: number = 1,
+    lang: string,
   ): Promise<{ data: ProductsEntity[]; total: number }> {
     const skip = (page - 1) * take;
 
@@ -98,6 +99,10 @@ export class ProductsService {
       query.andWhere('category.id IN (:...categoryIds)', {
         categoryIds: filterData.category_id,
       });
+    }
+
+    if (lang) {
+      query.andWhere('category.lang = :lang', { lang });
     }
 
     const [products, total] = await query
