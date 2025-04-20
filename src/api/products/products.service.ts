@@ -76,7 +76,7 @@ export class ProductsService {
   }
 
   async filterProducts(
-    filterData: FilterProductDto,
+    filterData: FilterProductDto = {}, 
     take: number = 10,
     page: number = 1,
   ): Promise<{ data: ProductsEntity[]; total: number }> {

@@ -1,5 +1,6 @@
 import { IsOptional, IsString, IsInt, IsArray } from 'class-validator';
 import { ApiPropertyOptional } from '@nestjs/swagger';
+import { Transform } from 'class-transformer';
 
 export class FilterProductDto {
   @ApiPropertyOptional({
@@ -20,5 +21,10 @@ export class FilterProductDto {
   @IsArray()
   @IsInt({ each: true })
   @IsOptional()
+  @Transform(({ value }) =>
+    Array.isArray(value)
+      ? value.map((v) => parseInt(v, 10))
+      : [parseInt(value, 10)],
+  )
   category_id?: number[];
 }
