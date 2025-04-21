@@ -21,7 +21,7 @@ export class ProductsEntity {
   @Column({ type: 'text' })
   description: string;
 
-  @Column({ type: 'text' })
+  @Column({ type: 'text', nullable: true })
   layout: string;
 
   @Column()
