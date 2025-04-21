@@ -23,6 +23,14 @@ export class CreateProductDto {
   @IsNotEmpty()
   description: string;
 
+  @ApiProperty({
+    example: 'The latest iPhone model with titanium body.',
+    description: 'Product layout',
+  })
+  @IsString()
+  @IsNotEmpty()
+  layout: string;
+
   @ApiProperty({ example: 'Black', description: 'Product color' })
   @IsString()
   @IsNotEmpty()

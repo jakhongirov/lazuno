@@ -21,6 +21,9 @@ export class ProductsEntity {
   @Column({ type: 'text' })
   description: string;
 
+  @Column({ type: 'text' })
+  layout: string;
+
   @Column()
   color: string;
 

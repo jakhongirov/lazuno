@@ -19,6 +19,14 @@ export class UpdateProductDto {
   description?: string;
 
   @ApiPropertyOptional({
+    description: 'Updated product layout',
+    example: 'A high-end Android phone with advanced AI features.',
+  })
+  @IsOptional()
+  @IsString()
+  layout?: string;
+
+  @ApiPropertyOptional({
     description: 'Updated color of the product',
     example: 'Silver',
   })

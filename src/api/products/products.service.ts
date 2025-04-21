@@ -195,6 +195,7 @@ export class ProductsService {
     const product = this.productsRepo.create({
       title: productData.title,
       description: productData.description,
+      layout: productData.layout,
       color: productData.color,
       image_url: image_url || [],
       image_name: image_name || [],
@@ -218,6 +219,7 @@ export class ProductsService {
 
     if (productData.title) product.title = productData.title;
     if (productData.description) product.description = productData.description;
+    if (productData.layout) product.layout = productData.layout;
     if (productData.color) product.color = productData.color;
 
     if (productData.category_id) {
